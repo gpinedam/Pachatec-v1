@@ -2,6 +2,8 @@
 
 Pachatec es una aplicación web construida con Flask que actúa como un asistente virtual inteligente especializado en brindar recomendaciones agronómicas. Utiliza la API de OpenAI para interpretar consultas sobre cultivos específicos (arroz, cacao, café y plátano) y generar respuestas expertas a partir de una base de datos local en Excel.
 
+![alt text](dem-pachatec.png)
+
 ---
 
 ## 🚀 Características
