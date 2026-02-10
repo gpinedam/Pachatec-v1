@@ -1,17 +1,24 @@
 from flask import Flask, request, render_template, session, jsonify
+import os
 import uuid
 import openai
 import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # Configuración de la API de OpenAI
+OPEN_KEY = os.getenv("OPEN_KEY")
+if not OPEN_KEY:
+    raise RuntimeError("Falta la variable de entorno OPEN_KEY. Define OPEN_KEY en tu .env o exporta en la terminal.")
 client = openai.OpenAI(api_key=OPEN_KEY)
 
 # Cargar el archivo Excel y hojas específicas
 archivo_excel = 'db_pachatec.xlsx'
-hojas_excel = pd.read_excel(archivo_excel, sheet_name=None)
+hojas_excel = pd.read_excel(archivo_excel, sheet_name=None, engine="openpyxl")
 db_hojas = ["BD Arroz", "BD Cacao", "BD Café", "BD Plátano"]
 columnas_parametros = ["Tipo de problema", "Nombre de problema", "Fase de desarrollo", "Sistema de producción",
                        "Nivel de Severidad"]
